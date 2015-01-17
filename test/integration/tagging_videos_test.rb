@@ -48,13 +48,18 @@ class TaggingVideosTest < ActionDispatch::IntegrationTest
   end
 
   test "tags show up on the tags index page only if they are approved" do 
-    Tag.create!(name: 'approved_tag', status: 'approved')
-    Tag.create!(name: 'rejected_tag', status: 'rejected')
-    Tag.create!(name: 'pending_tag', status: 'pending')
-
     visit tags_path
     assert page.has_content?("approved_tag"), "approved_tag not present"
     assert_not page.has_content?("rejected_tag"), "rejected_tag present"
     assert_not page.has_content?("pending_tag"), "pending_tag present"
+  end
+
+  test "as an admin, I can see all tags in a tags admin panel" do 
+    sign_in_admin
+    visit admin_tags_path
+
+    assert page.has_content?("pending_tag")
+    assert page.has_content?("rejected_tag")
+    assert page.has_content?("approved_tag")
   end
 end
