@@ -1,13 +1,20 @@
 require "test_helper"
 
 class TagTest < ActiveSupport::TestCase
-
-  def tag
-    @tag ||= Tag.new
+  before do 
+    @tag = tags(:valid_tag)
   end
 
-  def test_valid
-    assert tag.valid?
+  test "can create a tag" do 
+    tag = Tag.new(name: 'rails')
+    assert tag.save
   end
 
+  test "responds to taggings" do 
+    assert_respond_to @tag, :taggings
+  end
+
+  test "responds to videos" do 
+    assert_respond_to @tag, :videos
+  end
 end

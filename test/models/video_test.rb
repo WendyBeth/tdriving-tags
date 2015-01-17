@@ -1,6 +1,10 @@
 require "test_helper"
 
 class VideoTest < ActiveSupport::TestCase
+  before do 
+    @video = videos(:valid_video)
+  end
+
   test "valid video saves" do 
     assert videos(:valid_video).save
   end
@@ -28,5 +32,13 @@ class VideoTest < ActiveSupport::TestCase
     i_am_not = Video.new(title: "Valid")
 
     assert_not i_am_not.save
+  end
+
+  test "responds to taggings" do 
+    assert_respond_to @video, :taggings
+  end
+
+  test "responds to tags" do 
+    assert_respond_to @video, :tags
   end
 end
