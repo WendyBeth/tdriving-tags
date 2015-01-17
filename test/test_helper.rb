@@ -3,6 +3,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
 require 'minitest/rails'
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :trunction
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
