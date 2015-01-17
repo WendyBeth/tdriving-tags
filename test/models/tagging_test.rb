@@ -13,4 +13,8 @@ class TaggingTest < ActiveSupport::TestCase
   test "responds to video" do 
     assert_respond_to @tagging, :video
   end
+
+  test "responds to tag" do 
+    assert_respond_to @tagging, :tag
+  end
 end

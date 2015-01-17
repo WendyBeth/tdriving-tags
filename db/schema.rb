@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150117180217) do
+ActiveRecord::Schema.define(version: 20150117180914) do
 
   create_table "taggings", force: true do |t|
     t.integer  "video_id"
@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20150117180217) do
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
   add_index "taggings", ["video_id", "tag_id"], name: "index_taggings_on_video_id_and_tag_id", unique: true
   add_index "taggings", ["video_id"], name: "index_taggings_on_video_id"
+
+  create_table "tags", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
