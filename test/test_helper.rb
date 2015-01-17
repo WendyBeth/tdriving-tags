@@ -6,6 +6,14 @@ require 'minitest/rails'
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+
+  def sign_in_user
+    visit new_user_session_path
+
+    fill_in 'Email', with: users(:valid_user).email 
+    fill_in 'Password', with: 'password'
+    click_button 'Log in'
+  end
 end
 
 class ActiveSupport::TestCase
