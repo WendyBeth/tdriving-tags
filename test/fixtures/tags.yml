@@ -3,3 +3,15 @@
 
 valid_tag:
   name: rails 4
+
+approved_tag:
+  name: approved_tag
+  status: approved
+
+pending_tag: 
+  name: pending_tag
+  status: pending
+
+rejected_tag:
+  name: rejected_tag
+  status: rejected

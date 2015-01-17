@@ -37,4 +37,24 @@ class TaggingVideosTest < ActionDispatch::IntegrationTest
 
     assert page.has_content?("#{videos(:valid_video).title}"), "page does not have video title"
   end
+
+  test "as an administrator, no tags are available if I haven't approved any" do 
+    sign_in_admin
+    Tag.all.each { |tag| tag.update_attributes(status: "pending") }
+    
+    visit tags_path
+
+    assert page.has_content?("No tags are currently available."), "no content: 'No tags are currently available.'"
+  end
+
+  test "tags show up on the tags index page only if they are approved" do 
+    Tag.create!(name: 'approved_tag', status: 'approved')
+    Tag.create!(name: 'rejected_tag', status: 'rejected')
+    Tag.create!(name: 'pending_tag', status: 'pending')
+
+    visit tags_path
+    assert page.has_content?("approved_tag"), "approved_tag not present"
+    assert_not page.has_content?("rejected_tag"), "rejected_tag present"
+    assert_not page.has_content?("pending_tag"), "pending_tag present"
+  end
 end

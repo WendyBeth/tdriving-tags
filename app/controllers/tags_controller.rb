@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
 
   def index
-    @tags = Tag.all
+    @tags = Tag.approved
   end
 
   def show

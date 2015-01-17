@@ -17,6 +17,14 @@ class ActionDispatch::IntegrationTest
     fill_in 'Password', with: 'password'
     click_button 'Log in'
   end
+
+  def sign_in_admin
+    visit new_user_session_path
+
+    fill_in 'Email', with: users(:admin_user).email
+    fill_in 'Password', with: 'admin'
+    click_button 'Log in'
+  end
 end
 
 class ActiveSupport::TestCase
