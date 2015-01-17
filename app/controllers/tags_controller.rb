@@ -1,8 +1,13 @@
 class TagsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create]
 
+  def index
+    @tags = Tag.all
+  end
+
   def show
     @tag = Tag.find(params[:id])
+    @videos = @tag.videos
   end
   
   def new
@@ -13,8 +18,9 @@ class TagsController < ApplicationController
   def create
     @video = Video.find(params[:video_id])
     @tag = @video.tags.build(tag_params)
+    tagging = @tag.taggings.build(tag_id: @tag.id, video_id: @video.id)
 
-    if @tag.save
+    if @tag.save && tagging.save
       redirect_to tag_path(@tag)
     else
       render 'new'

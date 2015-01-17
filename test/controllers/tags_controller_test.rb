@@ -28,4 +28,9 @@ class TagsControllerTest < ActionController::TestCase
     get :show, id: tags(:valid_tag)
     assert_response :success
   end
+
+  test "can get index" do 
+    get :index
+    assert_response :success
+  end
 end

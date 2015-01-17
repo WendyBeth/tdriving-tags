@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :tags, only: [:new, :create]
   end
 
-  resources :tags, only: [:show]
+  resources :tags, only: [:show, :index]
 end

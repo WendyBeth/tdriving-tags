@@ -17,6 +17,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'spring',        group: :development
 
+gem 'database_cleaner', group: :test
+
 group :test, :development do 
   gem 'capybara'
   gem 'minitest-rails'
