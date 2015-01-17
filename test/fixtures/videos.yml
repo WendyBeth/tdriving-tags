@@ -1,0 +1,4 @@
+valid_video:
+  title: A Valid Video 
+  abstract: A video which is valid and can be stored in the database.
+  youtube_code: GzXym2
