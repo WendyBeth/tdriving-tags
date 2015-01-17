@@ -2,4 +2,4 @@
 # http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 valid_tag:
-  name: ruby
+  name: rails 4

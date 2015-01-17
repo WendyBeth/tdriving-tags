@@ -5,7 +5,7 @@ class TaggingVideosTest < ActionDispatch::IntegrationTest
     sign_in_user
     visit new_video_tag_path(videos(:valid_video))
 
-    fill_in 'Tag', with: 'ruby'
+    fill_in 'Name', with: 'ruby'
 
     assert_difference('Tag.count', 1) do 
       click_button 'Save'

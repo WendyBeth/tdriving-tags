@@ -17,4 +17,9 @@ class TagTest < ActiveSupport::TestCase
   test "responds to videos" do 
     assert_respond_to @tag, :videos
   end
+
+  test "must have a name" do 
+    tag = Tag.new
+    assert_not tag.save
+  end
 end

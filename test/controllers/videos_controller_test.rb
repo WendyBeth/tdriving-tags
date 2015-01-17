@@ -51,7 +51,7 @@ class VideosControllerTest < ActionController::TestCase
   end
 
   test "non-admin is redirected from create" do 
-    assert_no_difference('Video.count', 1) do 
+    assert_no_difference('Video.count') do 
       post :create, { video: @valid_params }
     end
     
