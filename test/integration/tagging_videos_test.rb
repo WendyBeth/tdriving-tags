@@ -81,4 +81,18 @@ class TaggingVideosTest < ActionDispatch::IntegrationTest
     assert tags.include?("rails"), "tags do not include 'rails'"
     assert tags.include?("minitest"), "tags do not include 'minitest'"
   end
+
+  test "as a signed in user, I can add an existing tag to a video" do 
+    sign_in_user
+    visit new_video_tag_path(videos(:valid_video))
+
+    fill_in 'Name', with: 'approved_tag'
+
+    assert_no_difference('Tag.count') do 
+      click_button 'Save'
+    end
+
+    assert videos(:valid_video).tags.include?(tags(:approved_tag)), "approved tag not added to valid video"
+    assert current_path == video_path(videos(:valid_video)), "current path is not valid_video path"
+  end
 end

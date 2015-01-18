@@ -17,11 +17,11 @@ class TagsController < ApplicationController
 
   def create
     @video = Video.find(params[:video_id])
-    @tag = @video.tags.build(tag_params)
+    @tag = Tag.find_or_create_by(name: tag_params[:name])
     tagging = @tag.taggings.build(tag_id: @tag.id, video_id: @video.id)
 
     if @tag.save && tagging.save
-      redirect_to tag_path(@tag)
+      redirect_to video_path(@video)
     else
       render 'new'
     end

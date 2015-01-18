@@ -58,4 +58,9 @@ class TagTest < ActiveSupport::TestCase
     assert_not rejected_tags.include?(@approved_tag)
     assert_not rejected_tags.include?(@pending_tag)
   end
+
+  test "a tag name must be unique" do 
+    repeat_tag = Tag.new(name: 'approved_tag')
+    assert_not repeat_tag.save
+  end
 end
