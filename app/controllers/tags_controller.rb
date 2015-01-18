@@ -27,6 +27,10 @@ class TagsController < ApplicationController
     end
   end
 
+  def suggestions
+    render json: Tag.approved.map(&:name)
+  end
+
   private
 
   def tag_params

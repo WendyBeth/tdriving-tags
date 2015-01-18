@@ -1,3 +1,18 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  tags = new Bloodhound(
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace("name")
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    prefetch:
+      url: "/tag-suggestions.json"
+      filter: (list) ->
+        $.map list, (tag) ->
+          name: tag
+  )
+
+  tags.clearPrefetchCache()
+  tags.initialize(true)
+
+  $("#tag_name").typeahead null,
+    name: "tags"
+    displayKey: "name"
+    source: tags.ttAdapter()

@@ -95,4 +95,18 @@ class TaggingVideosTest < ActionDispatch::IntegrationTest
     assert videos(:valid_video).tags.include?(tags(:approved_tag)), "approved tag not added to valid video"
     assert current_path == video_path(videos(:valid_video)), "current path is not valid_video path"
   end
+
+  test "can use autocomplete at new_video_tag_path to add existing tag to video" do 
+    Capybara.current_driver = Capybara.javascript_driver
+
+    sign_in_user
+    visit new_video_tag_path(videos(:valid_video))
+
+    field = 'tag_name'
+    fill_in 'Name', with: 'appr'
+
+    page.execute_script %Q{ $("##{field}").trigger('focus') }
+    suggestion = page.find('.tt-suggestion')
+    assert_equal "approved_tag", suggestion.text
+  end
 end

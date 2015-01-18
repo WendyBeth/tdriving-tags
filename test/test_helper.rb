@@ -9,6 +9,11 @@ DatabaseCleaner.strategy = :truncation
 
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
+  Capybara.javascript_driver = :selenium
+
+  def teardown
+    Capybara.current_driver = nil
+  end
 
   def sign_in_user
     visit new_user_session_path
@@ -26,6 +31,17 @@ class ActionDispatch::IntegrationTest
     click_button 'Log in'
   end
 end
+
+class ActiveRecord::Base
+  mattr_accessor :shared_connection
+  @@shared_connection = nil
+
+  def self.connection 
+    @@shared_connection || retrieve_connection
+  end
+end
+
+ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection 
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.

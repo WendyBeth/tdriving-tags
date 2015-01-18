@@ -1,2 +1,2 @@
 //= require bootstrap
-//= require npm
+//= require typeahead.bundle
