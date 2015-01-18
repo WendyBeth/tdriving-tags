@@ -57,6 +57,11 @@ GEM
     erubis (2.7.0)
     execjs (2.2.2)
     ffi (1.9.6)
+    gon (5.2.3)
+      actionpack (>= 2.3.0)
+      json
+      multi_json
+      request_store (>= 1.0.5)
     haml (4.1.0.beta.1)
       tilt
     haml-rails (0.7.0)
@@ -122,6 +127,7 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
       json (~> 1.4)
+    request_store (1.1.0)
     responders (1.1.2)
       railties (>= 3.2, < 4.2)
     ruby_parser (3.1.3)
@@ -181,6 +187,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   devise
+  gon
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails

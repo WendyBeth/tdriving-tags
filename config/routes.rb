@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root "home#index"
   devise_for :users
 
-  match 'tag-suggestions' => "tags#suggestions", via: :get
+  get 'tag-suggestions', controller: 'tags', action: 'suggestions'
+  get 'tag-cloud', controller: 'tags', action: 'cloud'
 
   resources :videos do 
     resources :tags, only: [:new, :create]

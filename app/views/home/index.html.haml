@@ -7,3 +7,10 @@
   - if user_signed_in? && current_user.admin?
     .col-sm-3
       %h1= link_to "Admin Tags", admin_tags_path
+
+.row
+  %h1.title-lg.first-child
+    %span
+      Tag Cloud
+
+  #tag-cloud{:style => "width: 550px; height: 350px;"}

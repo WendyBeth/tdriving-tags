@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'pry-rescue'
 
 gem 'devise'
+gem 'gon'
 
 gem 'jquery-rails'
 gem 'turbolinks'
