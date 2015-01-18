@@ -1,8 +1,9 @@
-%h1 All Videos
+.row
+  %h1 All Videos
 
-- if @videos.empty?
-  No videos currently available.
-- else
-  %ul
-    - @videos.each do |video|
-      %li= link_to video.title, video_path(video)
+  - if @videos.empty?
+    No videos currently available.
+  - else
+    %ul
+      - @videos.each do |video|
+        %li= link_to video.title, video_path(video)

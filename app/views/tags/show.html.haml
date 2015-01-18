@@ -1,5 +1,6 @@
-%h1= @tag.name
+.row
+  %h1= @tag.name
 
-%ul
-  - @videos.each do |video|
-    %li= link_to video.title, video_path(video)
+  %ul
+    - @videos.each do |video|
+      %li= link_to video.title, video_path(video)

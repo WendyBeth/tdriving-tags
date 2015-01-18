@@ -1,6 +1,15 @@
-%h1 Admin Tags Panel
+.row
+  .col-sm-6
+    %h1 Admin Tags Panel
 
-- @tags.each do |tag|
-  = tag.name
-  |
-  = tag.status
+    - @tags.each do |tag|
+      %li
+        = tag.name
+        |
+        = tag.status
+        |
+        = link_to "edit", edit_admin_tag_path(tag)
+        |
+        = link_to "destroy", "#"
+  .col-sm-6
+    %h1= link_to "New Tag", new_admin_tag_path
