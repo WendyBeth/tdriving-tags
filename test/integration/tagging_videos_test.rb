@@ -62,4 +62,23 @@ class TaggingVideosTest < ActionDispatch::IntegrationTest
     assert page.has_content?("rejected_tag")
     assert page.has_content?("approved_tag")
   end
+
+  test "as an admin, I can add tags to a video when I create a new video" do 
+    sign_in_admin
+    visit new_video_path
+
+    fill_in 'Title', with: "A Video With Tags"
+    fill_in 'All tags', with: "ruby, tdd, rails, minitest"
+
+    assert_difference('Video.count', 1) do 
+      click_button 'Save'
+    end
+
+    tags = Video.last.tags.map(&:name)
+
+    assert tags.include?("ruby"), "tags do not include 'ruby'"
+    assert tags.include?("tdd"), "tags do not include 'tdd'"
+    assert tags.include?("rails"), "tags do not include 'rails'"
+    assert tags.include?("minitest"), "tags do not include 'minitest'"
+  end
 end
