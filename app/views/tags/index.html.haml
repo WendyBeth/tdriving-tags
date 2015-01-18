@@ -1,8 +1,9 @@
-%h1 All Tags
+.col-sm-6
+  %h1 All Tags
 
-- if @tags.empty?
-  No tags are currently available.
-- else
-  %ul
-    - @tags.each do |tag|
-      %li= link_to tag.name, tag_path(tag)
+  - if @tags.empty?
+    No tags are currently available.
+  - else
+    %ul
+      - @tags.each do |tag|
+        %li= link_to tag.name, tag_path(tag)
