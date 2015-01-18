@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   resources :tags, only: [:show, :index]
 
   namespace :admin do 
-    resources :tags, only: [:index]
+    resources :tags
   end
 end
